@@ -1,8 +1,26 @@
 [
   {
-    "title": "Serpenti Tubogas Watch",
-    "description": "Serpenti Tubogas Lady watch, 35 mm stainless steel curved case, 18 kt rose gold bezel set with diamonds, 18 kt rose gold crown set with a cabochon cut pink rubellite.",
-    "price": 15000,
-    "stock": 10
+    "title": "VRAI V Solitaire Necklace",
+    "description": "A design that redefines timeless. Inspired by VRAI’s signature motif, the VRAI V Solitaire Necklace features a solid gold or sterling silver",
+    "price": 900,
+    "stock": 10,
+    "photoURL": "https://media.bulgari.com/image/upload/c_pad,h_1124,w_1440/q_auto/f_auto/1447968.png",
+    "CategoryId": 3
+  },
+  {
+    "title": "Matrix drop earrings",
+    "description": "Crystal pearl, Round cut, White, Rhodium plated",
+    "price": 1000,
+    "stock": 9,
+    "photoURL": "https://asset.swarovski.com/images/$size_1450/t_swa002/c_scale,dpr_1.0,f_auto,w_675/5709256_ms1/matrix-drop-earrings--crystal-pearl--round-cut--white--rhodium-plated-swarovski-5709256.jpg",
+    "CategoryId": 1
+  },
+  {
+    "title": "Serpenti Viper Bracelet",
+    "description": "Serpenti Viper one-coil 18 kt white gold bracelet",
+    "price": 7500,
+    "stock": 8,
+    "photoURL": "https://media.bulgari.com/image/upload/c_pad,h_1124,w_1440/q_auto/f_auto/1581426.png",
+    "CategoryId": 2
   }
 ]

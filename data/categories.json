@@ -1,14 +1,18 @@
 [
   {
+    "id": 1,
     "name": "Earrings"
   },
   {
+    "id": 2,
     "name": "Bracelets"
   },
   {
+    "id": 3,
     "name": "Necklaces"
   },
   {
+    "id": 4,
     "name": "Rings"
   }
 ]
