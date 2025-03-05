@@ -18,38 +18,43 @@
         <% data.forEach(element => { %>
         <div class="flex flex-col">
           <div class="mb-4 bg-stone-100 relative">
-            <button
-              class="absolute top-4 right-4 z-10 p-2 hover:scale-110 transition-transform"
+            <a
+              href="/items/favorite/<%= element.dataValues.Item.id %>/delete"
+              class="absolute top-4 right-4 z-50 p-2 hover:scale-110 transition-transform"
+              onclick="event.stopPropagation();"
             >
-              <div class="p-1 bg-gray-200 rounded-full">
+              <div class="p-2 bg-gray-200 rounded-full">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
+                  fill="none"
+                  class="h-6 w-6"
+                  stroke="#767676"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"
                   />
                 </svg>
               </div>
-            </button>
-            <a href="/detail/<%= element.id %>">
+            </a>
+
+            <a href="/detail/<%= element.dataValues.Item.id %>">
               <img
-                src="<%= element.photoURL %>"
+                src="<%= element.dataValues.Item.photoURL %>"
                 alt="Mimi Pin Earrings Gold"
                 class="w-full object-cover aspect-square"
               />
             </a>
           </div>
           <div class="mb-2">
-            <h3 class="font-normal text-medium mb-1"><%= element.title %></h3>
+            <h3 class="font-normal text-medium mb-1">
+              <%= element.dataValues.Item.title %>
+            </h3>
             <p class="text-sm font-normal text-gray-500">
-              $<%= element.price %>
+              $<%= element.dataValues.Item.price %>
             </p>
           </div>
           <button

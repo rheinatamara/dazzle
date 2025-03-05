@@ -1,4 +1,4 @@
-const { Category, Item } = require("../models");
+const { Category, Item, Favorite } = require("../models");
 class Controller {
   static async landingPage(req, res) {
     try {
@@ -36,10 +36,16 @@ class Controller {
   }
   static async itemDetail(req, res) {
     try {
-      let { id } = req.params;
-      let data = await Item.findByPk(+id, { include: Category });
-      res.render("detailPage", { data });
-      console.log(data.Category.name);
+      const { id } = req.params;
+      let { userId } = req.session;
+      let isLogin = !!userId;
+      let isFavorited = false;
+      const data = await Item.findByPk(+id, { include: Category });
+      if (!data) return res.send("Item not found");
+      if (isLogin) {
+        isFavorited = await Item.isFavorite(userId, id);
+      }
+      res.render("detailPage", { data, isLogin, isFavorited });
     } catch (error) {
       res.send(error);
     }
