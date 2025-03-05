@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         beforeCreate: (user, option) => {
           user.password = encode(user.password);
+          user.role = "customer";
         },
       },
     }

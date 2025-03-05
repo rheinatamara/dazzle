@@ -1,17 +1,18 @@
 const express = require("express");
+const Controller = require("../controllers/controller");
 const UserController = require("../controllers/UserController");
 const user = express.Router();
 
-// ADMIN
-user.post("/register");
-user.post("/login");
-
 // Customer
-user.post("/users/register");
-user.post("/users/login");
-user.get("/users/:id/profile"); //get profile info
-user.post("/users/:id/profile"); //edit profile
-user.get("/favorites", UserController.favoritePage);
-user.post("/users/:id/favorites"); //addFavorite
+user.get("/register", UserController.registerForm);
+
+user.post("/register", UserController.postRegister);
+user.get("/login", UserController.loginForm);
+user.post("/login", UserController.postLogin);
+user.get("/logout", UserController.logOut);
+user.get("/", Controller.landingPage);
+user.get("/items", Controller.allItems);
+user.get("/category/:id", Controller.categoryItems);
+user.get("/detail/:id", Controller.itemDetail);
 
 module.exports = user;
