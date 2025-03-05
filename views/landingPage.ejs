@@ -136,6 +136,23 @@
         </main>
       </div>
     </div>
+     <section class="flex justify-center gap-6 pt-10">
+      <% items.forEach(element => { %>
+        <div class="w-[15rem] max-w-sm "> 
+          <a href="/detail/<%= element.id %>">
+            <div class="">
+              <img class="w-full h-[15rem]" src="<%= element.photoURL %>" alt="product image" />
+          </div>
+          <div class="pt-5">
+                <h5 class="text-normal font-normal tracking-tight text-gray-900 ">$<%= element.price %></h5>
+                <p class="text-sm font-light text-gray-500"><%= element.title %></p>
+          
+          </div>
+          </a>
+      </div>
+      <% }) %>
+     </section>
+     
     <section class="container mx-auto px-4 py-12 max-w-6xl">
       <div class="text-center mb-10">
         <h1 class="header text-3xl mb-2">Shop by Category</h1>
@@ -210,5 +227,7 @@
       </div>
     </div>
     </section>
+    
+    
   </body>
 </html>
