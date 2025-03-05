@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/global.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('_nav') %>
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <div class="flex justify-between items-center mb-10">
+        <h1 class="header text-3xl font-normal">Explore Now</h1>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% data.forEach(element => { %>
+        <div class="flex flex-col">
+          <div class="mb-4 bg-stone-100 relative">
+            <button
+              class="absolute top-4 right-4 z-10 p-2 hover:scale-110 transition-transform"
+            >
+              <div class="p-1 bg-gray-200 rounded-full">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
+                </svg>
+              </div>
+            </button>
+            <a href="/detail/<%= element.id %>">
+              <img
+                src="<%= element.photoURL %>"
+                alt="Mimi Pin Earrings Gold"
+                class="w-full object-cover aspect-square"
+              />
+            </a>
+          </div>
+          <div class="mb-2">
+            <h3 class="font-normal text-medium mb-1"><%= element.title %></h3>
+            <p class="text-sm font-normal text-gray-500">
+              $<%= element.price %>
+            </p>
+          </div>
+          <button
+            class="font-normal mt-auto bg-black text-white hover:bg-black/90 py-3 mb-8"
+          >
+            Add To Cart
+          </button>
+        </div>
+
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>
