@@ -1,5 +1,5 @@
 const { decode } = require("../helpers/bcrypt");
-const { Category, Item, User } = require("../models");
+const { Category, Item, User, Favorite } = require("../models");
 
 class UserController {
   static registerForm(req, res) {
@@ -37,11 +37,41 @@ class UserController {
       res.send(error);
     }
   }
+  static async addToFavorite(req, res) {
+    try {
+      let { userId } = req.session;
+      let { id } = req.params;
+      await Favorite.create({ UserId: +userId, ItemId: +id });
+      res.redirect(`/detail/${+id}`);
+    } catch (error) {
+      res.send(error);
+    }
+  }
+  static async deleteFavorite(req, res) {
+    try {
+      let { id } = req.params;
+      await Favorite.destroy({ where: { ItemId: +id } });
+      res.redirect(`/detail/${+id}`);
+    } catch (error) {
+      res.send(error);
+    }
+  }
+  static async deleteFromFavorite(req, res) {
+    try {
+      let { id } = req.params;
+      await Favorite.destroy({ where: { ItemId: +id } });
+      res.redirect(`/favorites`);
+    } catch (error) {
+      res.send(error);
+    }
+  }
   static async favoritePage(req, res) {
     try {
-      const data = await Item.findAll({
-        order: [["createdAt", "DESC"]],
-      }); //untuk dummy aja
+      let { userId } = req.session;
+      let data = await Favorite.findAll({
+        include: Item,
+        where: { UserId: +userId },
+      });
       res.render("favorite", { data });
     } catch (error) {
       res.send(error);

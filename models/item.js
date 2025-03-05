@@ -7,6 +7,20 @@ module.exports = (sequelize, DataTypes) => {
       Item.hasMany(models.Favorite, { foreignKey: "ItemId" });
       Item.hasMany(models.OrderItem, { foreignKey: "ItemId" });
     }
+    static async isFavorite(userId, itemId) {
+      try {
+        let favorite = false;
+        const found = await sequelize.models.Favorite.findOne({
+          where: { UserId: userId, ItemId: itemId },
+        });
+        if (found) {
+          favorite = true;
+        }
+        return favorite;
+      } catch (error) {
+        throw error;
+      }
+    }
   }
   Item.init(
     {
