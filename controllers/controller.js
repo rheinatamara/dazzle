@@ -44,16 +44,6 @@ class Controller {
       res.send(error);
     }
   }
-  static async favoritePage(req, res) {
-    try {
-      const data = await Item.findAll({
-        order: [["createdAt", "DESC"]],
-      }); //untuk dummy aja
-      res.render("favorite", { data });
-    } catch (error) {
-      res.send(error);
-    }
-  }
 }
 
 module.exports = Controller;
