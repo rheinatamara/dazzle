@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('_nav', { info: info, userId: userId }) %>
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <div class="flex justify-between items-center mb-10">
+        <h1 class="header text-3xl font-normal">Add an Item</h1>
+      </div>
+      <form method="POST" action="/dashboard/add">
+        <div class="mb-6">
+          <label class="block mb-2 text-sm font-medium text-gray-900"
+            >Title</label
+          >
+          <input
+            type="text"
+            name="title"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Item Title"
+          />
+        </div>
+        <div class="mb-6">
+          <label class="block mb-2 text-sm font-medium text-gray-900"
+            >Description</label
+          >
+          <textarea
+            id="message"
+            rows="4"
+            name="description"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Type Item description..."
+          ></textarea>
+        </div>
+        <div class="mb-6">
+          <label class="block mb-2 text-sm font-medium text-gray-900"
+            >Category</label
+          >
+          <select
+            name="CategoryId"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+            <option selected value="">-- Select --</option>
+            <% categories.forEach(element => { %>
+            <option value="<%= element.id %>"><%= element.name %></option>
+
+            <% }) %>
+          </select>
+        </div>
+        <div class="mb-6">
+          <label class="block mb-2 text-sm font-medium text-gray-900"
+            >Price</label
+          >
+          <input
+            type="number"
+            name="price"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Item price"
+          />
+        </div>
+        <div class="mb-6">
+          <label class="block mb-2 text-sm font-medium text-gray-900"
+            >Stock</label
+          >
+          <input
+            type="number"
+            name="stock"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Item stock"
+          />
+        </div>
+        <div class="mb-6">
+          <label class="block mb-2 text-sm font-medium text-gray-900"
+            >Photo URL</label
+          >
+          <input
+            type="text"
+            name="photoURL"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Photo URL"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

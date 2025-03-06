@@ -9,7 +9,7 @@
     <title>Document</title>
   </head>
   <body>
-    <%- include('_nav') %>
+    <%- include('_nav', { info: info, userId: userId }) %>
     <section class="bg-white py-8 antialiased md:py-16">
       <form action="#" class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div class="mx-auto max-w-3xl">
@@ -23,24 +23,28 @@
             <h4 class="text-lg font-semibold text-gray-900">
               Delivery information
             </h4>
-
+            <% if (user) { %>
             <dl>
               <dt class="text-base font-medium text-gray-900">
-                <%= user.email %>
+                <%= user.fullName %>
               </dt>
-              <dd class="mt-1 text-base font-normal text-gray-500">
-                <%= user.email %>
+              <dd class="mt-1 text-base font-normal text-gray-500 mb-4">
+                <%= user.address %>
               </dd>
             </dl>
-
-            <button
+            <a
+              href="/users/<%= user.UserId %>/profile/edit"
               type="button"
               data-modal-target="billingInformationModal"
               data-modal-toggle="billingInformationModal"
               class="text-base font-medium text-primary-700 hover:underline"
             >
               Edit
-            </button>
+            </a>
+
+            <% } else { %>
+            <a href="/users/<%= user.UserId %>/profile">add your information</a>
+            <% } %>
           </div>
 
           <div class="mt-6 sm:mt-8">

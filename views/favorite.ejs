@@ -9,7 +9,7 @@
     <title>Document</title>
   </head>
   <body>
-    <%- include('_nav') %>
+    <%- include('_nav', { info: info, userId: userId }) %>
     <div class="max-w-7xl mx-auto px-4 py-12">
       <div class="flex justify-between items-center mb-10">
         <h1 class="header text-3xl font-normal">Favorited by You</h1>
