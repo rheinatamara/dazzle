@@ -103,7 +103,6 @@ class UserController {
   static async postEditProfile(req, res) {
     try {
       let { userId } = req.session;
-      userId = 2;
       let { fullName, address } = req.body;
       let data = {
         UserId: +userId,

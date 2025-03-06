@@ -6,6 +6,7 @@ const {
   OrderItem,
   UserProfile,
 } = require("../models");
+const nodemailer = require("nodemailer");
 
 class OrderController {
   static async addToCart(req, res) {
@@ -58,7 +59,6 @@ class OrderController {
           info.profile = true;
         }
       }
-      userId = 2;
       const orders = await Order.findAll({
         include: [
           {
@@ -105,7 +105,23 @@ class OrderController {
   }
   static async checkout(req, res) {
     try {
-      //notif order telah dibuat, ganti order status jadi completed dan send email lewat email.js
+      let { userId } = req.session;
+      const user = await User.findOne({ where: { id: +userId } });
+      let transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
+      });
+
+      let mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: user.email,
+        subject: "Your Confirmation Code",
+        text: `Your confirmation code is: 123433`,
+      };
+      await transporter.sendMail(mailOptions);
     } catch (error) {
       res.send(error);
     }
