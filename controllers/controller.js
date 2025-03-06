@@ -1,18 +1,19 @@
-const { Category, Item, Favorite } = require("../models");
+const { Category, Item, Favorite, User, Order } = require("../models");
 class Controller {
   static async landingPage(req, res) {
     try {
+      // let { userId } = req.session;
       const items = await Item.findAll({
         limit: 3,
         order: [["createdAt", "DESC"]],
       });
       const data = await Category.findAll();
-
       res.render("landingPage", { data, items });
     } catch (error) {
       res.send(error);
     }
   }
+
   static async allItems(req, res) {
     try {
       const data = await Item.findAll({
