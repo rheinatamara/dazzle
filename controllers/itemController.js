@@ -4,7 +4,7 @@ class ItemController {
   static async dashboard(req, res) {
     try {
       let { userId, role } = req.session;
-
+      let { deleted } = req.query;
       let info = {
         isLoggedIn: false,
         isAdmin: false,
@@ -23,8 +23,9 @@ class ItemController {
           info.profile = true;
         }
       }
+
       let data = await Item.findAll({ include: Category });
-      res.render("dashboard", { data, info, userId });
+      res.render("dashboard", { data, info, userId, deleted });
     } catch (error) {
       res.send(error);
     }
@@ -136,12 +137,14 @@ class ItemController {
   static async deleteItem(req, res) {
     try {
       let { id } = req.params;
+      let foundItem = await Item.findByPk(+id);
+
       await Item.destroy({
         where: {
           id: +id,
         },
       });
-      res.redirect("/dashboard");
+      res.redirect(`/dashboard?deleted=${foundItem.title}`);
     } catch (error) {
       res.send(error);
     }
