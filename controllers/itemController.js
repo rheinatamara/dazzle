@@ -32,6 +32,7 @@ class ItemController {
   static async addItemForm(req, res) {
     try {
       let { userId, role } = req.session;
+      let { errors } = req.query;
       let info = {
         isLoggedIn: false,
         isAdmin: false,
@@ -50,8 +51,11 @@ class ItemController {
           info.profile = true;
         }
       }
+      if (errors) {
+        errors = errors.split(",");
+      }
       let categories = await Category.findAll();
-      res.render("addItem", { categories, info, userId });
+      res.render("addItem", { categories, info, userId, errors });
     } catch (error) {
       res.send(error);
     }
@@ -61,13 +65,25 @@ class ItemController {
       await Item.create(req.body);
       res.redirect("/dashboard");
     } catch (error) {
-      res.send(error);
+      if (
+        error.name === "SequelizeValidationError" ||
+        error.name === "SequelizeUniqueConstraintError" ||
+        error.name === "SequelizeDatabaseError"
+      ) {
+        error = error.errors.map((el) => {
+          return el.message;
+        });
+        res.redirect(`/dashboard/add?errors=${error}`);
+      } else {
+        res.send(error);
+      }
     }
   }
   static async getEditItem(req, res) {
     try {
       let { userId, role } = req.session;
       let { id } = req.params;
+      let { errors } = req.query;
       let info = {
         isLoggedIn: false,
         isAdmin: false,
@@ -86,9 +102,13 @@ class ItemController {
           info.profile = true;
         }
       }
+      if (errors) {
+        errors = errors.split(",");
+      }
       let data = await Item.findByPk(+id);
       let categories = await Category.findAll();
-      res.render("editItem", { data, categories, info, userId });
+      console.log(errors);
+      res.render("editItem", { data, categories, info, userId, errors });
     } catch (error) {
       res.send(error);
     }
@@ -99,7 +119,18 @@ class ItemController {
       await Item.update(req.body, { where: { id: +id } });
       res.redirect("/dashboard");
     } catch (error) {
-      res.send(error);
+      if (
+        error.name === "SequelizeValidationError" ||
+        error.name === "SequelizeUniqueConstraintError" ||
+        error.name === "SequelizeDatabaseError"
+      ) {
+        error = error.errors.map((el) => {
+          return el.message;
+        });
+        res.redirect(`/dashboard/${req.params.id}/edit?errors=${error}`);
+      } else {
+        res.send(error);
+      }
     }
   }
   static async deleteItem(req, res) {

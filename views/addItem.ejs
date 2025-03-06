@@ -24,6 +24,11 @@
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Item Title"
           />
+          <% if (errors) { %>
+          <p class="text-sm text-red-500 mt-4">
+            <%= errors.find(el => el.includes("Title")); %>
+          </p>
+          <% } %>
         </div>
         <div class="mb-6">
           <label class="block mb-2 text-sm font-medium text-gray-900"
@@ -36,6 +41,11 @@
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Type Item description..."
           ></textarea>
+          <% if (errors) { %>
+          <p class="text-sm text-red-500 mt-4">
+            <%= errors.find(el => el.includes("Description")); %>
+          </p>
+          <% } %>
         </div>
         <div class="mb-6">
           <label class="block mb-2 text-sm font-medium text-gray-900"
@@ -51,6 +61,11 @@
 
             <% }) %>
           </select>
+          <% if (errors) { %>
+          <p class="text-sm text-red-500 mt-4">
+            <%= errors.find(el => el.includes("Category")); %>
+          </p>
+          <% } %>
         </div>
         <div class="mb-6">
           <label class="block mb-2 text-sm font-medium text-gray-900"
@@ -62,6 +77,11 @@
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Item price"
           />
+          <% if (errors) { %>
+          <p class="text-sm text-red-500 mt-4">
+            <%= errors.find(el => el.includes("Price")); %>
+          </p>
+          <% } %>
         </div>
         <div class="mb-6">
           <label class="block mb-2 text-sm font-medium text-gray-900"
@@ -73,6 +93,11 @@
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Item stock"
           />
+          <% if (errors) { %>
+          <p class="text-sm text-red-500 mt-4">
+            <%= errors.find(el => el.includes("Stock")); %>
+          </p>
+          <% } %>
         </div>
         <div class="mb-6">
           <label class="block mb-2 text-sm font-medium text-gray-900"
@@ -84,6 +109,11 @@
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Photo URL"
           />
+          <% if (errors) { %>
+          <p class="text-sm text-red-500 mt-4">
+            <%= errors.find(el => el.includes("Photo")); %>
+          </p>
+          <% } %>
         </div>
 
         <button

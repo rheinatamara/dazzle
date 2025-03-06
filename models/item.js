@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
       Item.hasMany(models.Favorite, { foreignKey: "ItemId" });
       Item.hasMany(models.OrderItem, { foreignKey: "ItemId" });
     }
+    get formatPrice() {
+      return `$${this.price}`;
+    }
     static async isFavorite(userId, itemId) {
       try {
         let favorite = false;
@@ -24,16 +27,62 @@ module.exports = (sequelize, DataTypes) => {
   }
   Item.init(
     {
-      title: DataTypes.STRING,
-      description: DataTypes.TEXT,
-      price: DataTypes.INTEGER,
-      stock: DataTypes.INTEGER,
-      photoURL: DataTypes.STRING,
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Title is required",
+          },
+        },
+      },
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Description is required",
+          },
+        },
+      },
+      price: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Price is required",
+          },
+        },
+      },
+      stock: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Stock is required",
+          },
+        },
+      },
+      photoURL: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Photo is required",
+          },
+        },
+      },
       CategoryId: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: "Categories",
           key: "id",
+        },
+        validate: {
+          notNull: {
+            msg: "Category is required",
+          },
         },
       },
     },

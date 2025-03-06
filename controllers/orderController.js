@@ -23,7 +23,6 @@ class OrderController {
       let orderItem = await OrderItem.findOne({
         where: { OrderId: order.id, ItemId: +id },
       });
-
       if (orderItem) {
         await orderItem.update({ quantity: orderItem.quantity + quantity });
       } else {
@@ -68,6 +67,7 @@ class OrderController {
         ],
         where: {
           UserId: +userId,
+          status: "pending",
         },
       });
       let user = await UserProfile.findOne({
@@ -105,7 +105,16 @@ class OrderController {
   }
   static async checkout(req, res) {
     try {
-      let { userId } = req.session;
+      const { userId } = req.session;
+      const order = await Order.findOne({
+        where: { UserId: +userId, status: "pending" },
+      });
+      await Order.update(
+        { status: "completed" },
+        {
+          where: { id: order.id },
+        }
+      );
       const user = await User.findOne({ where: { id: +userId } });
       let transporter = nodemailer.createTransport({
         service: "gmail",
@@ -122,6 +131,7 @@ class OrderController {
         text: `Your confirmation code is: 123433`,
       };
       await transporter.sendMail(mailOptions);
+      res.redirect("/cart");
     } catch (error) {
       res.send(error);
     }
