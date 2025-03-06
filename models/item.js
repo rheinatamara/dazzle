@@ -80,7 +80,7 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
         validate: {
-          notNull: {
+          notEmpty: {
             msg: "Category is required",
           },
         },

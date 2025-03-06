@@ -1,26 +1,83 @@
 [
   {
-    "title": "VRAI V Solitaire Necklace",
-    "description": "A design that redefines timeless. Inspired by VRAI’s signature motif, the VRAI V Solitaire Necklace features a solid gold or sterling silver",
+    "title": "Tennis choker",
+    "description": "Mixed cuts, Crystal pearl, Heart, White, Rhodium plated",
     "price": 900,
     "stock": 10,
-    "photoURL": "https://media.bulgari.com/image/upload/c_pad,h_1124,w_1440/q_auto/f_auto/1447968.png",
+    "photoURL": "https://asset.swarovski.com/images/$size_1450/t_swa002/c_scale,dpr_2.0,f_auto,w_675/5720861_ms2/ariana-grande-x-swarovski-tennis-choker--mixed-cuts--crystal-pearl--heart--white--rhodium-plated-swarovski-5720861.jpg",
     "CategoryId": 3
   },
   {
-    "title": "Matrix drop earrings",
-    "description": "Crystal pearl, Round cut, White, Rhodium plated",
+    "title": "Ariana Grande x Swarovski necklace",
+    "description": "Crystal pearl, Heart cut, Heart, White, Rhodium plated",
     "price": 1000,
     "stock": 9,
-    "photoURL": "https://asset.swarovski.com/images/$size_1450/t_swa002/c_scale,dpr_1.0,f_auto,w_675/5709256_ms1/matrix-drop-earrings--crystal-pearl--round-cut--white--rhodium-plated-swarovski-5709256.jpg",
+    "photoURL": "https://asset.swarovski.com/images/$size_1450/t_swa002/c_scale,dpr_1.0,f_auto,w_675/5720858_ms1/ariana-grande-x-swarovski-necklace--crystal-pearl--heart-cut--heart--white--rhodium-plated-swarovski-5720858.jpg",
+    "CategoryId": 3
+  },
+  {
+    "title": "Una Angelic ring",
+    "description": "Round cut, White, Silver-tone finish",
+    "price": 7500,
+    "stock": 10,
+    "photoURL": "https://asset.swarovski.com/images/$size_1450/t_swa002/c_scale,dpr_1.0,f_auto,w_675/5717927_ms2/una-angelic-ring--round-cut--white--silver-tone-finish-swarovski-5717927.jpg",
+    "CategoryId": 4
+  },
+  {
+    "title": "LOVE bracelet, classic model",
+    "description": "A child of 1970s New York, the LOVE collection remains today an iconic symbol of love that transgresses convention. The screw motifs, ideal oval shape and undeniable elegance establish the piece as a timeless tribute to passionate romance. ",
+    "price": 900,
+    "stock": 11,
+    "photoURL": "https://www.cartier.com/dw/image/v2/BGTJ_PRD/on/demandware.static/-/Sites-cartier-master/default/dw756da243/images/large/da2b581ac6945d9c9ee6021fec79fabe.png?sw=2000&sh=2000&sm=fit&sfrm=png",
+    "CategoryId": 2
+  },
+
+  {
+    "title": "1895 wedding band, 3.5 mm width",
+    "description": "Cartier diamonds are unique. The queen of stones, it is the expression of an expertise that encapsulates excellence and delicacy.",
+    "price": 1100,
+    "stock": 12,
+    "photoURL": "https://www.cartier.com/dw/image/v2/BGTJ_PRD/on/demandware.static/-/Sites-cartier-master/default/dw30f9706c/images/large/83cf2d90089051cabcc42dcd011386cd.png?sw=2000&sh=2000&sm=fit&sfrm=png",
+    "CategoryId": 4
+  },
+  {
+    "title": "Trinity ring, small model, paved",
+    "description": "Designed by Louis Cartier in 1924, the Trinity ring is a signature design of the Cartier Maison. The three interlaced bands in pink, yellow and white gold symbolize love, fidelity and friendship.",
+    "price": 18500,
+    "stock": 22,
+    "photoURL": "https://www.cartier.com/dw/image/v2/BGTJ_PRD/on/demandware.static/-/Sites-cartier-master/default/dw39d76d08/images/large/0d40d887ec07528a91e99f8a98d5db9a.png?sw=2000&sh=2000&sm=fit&sfrm=png",
+    "CategoryId": 4
+  },
+  {
+    "title": "LOVE stud earrings",
+    "description": "A child of 1970s New York, the LOVE collection remains today an iconic symbol of love that transgresses convention. The screw motifs, ideal oval shape and undeniable elegance establish the piece as a timeless tribute to passionate romance.",
+    "price": 1720,
+    "stock": 22,
+    "photoURL": "https://www.cartier.com/dw/image/v2/BGTJ_PRD/on/demandware.static/-/Sites-cartier-master/default/dw3a0a0951/images/large/137d2a2ec292517c86253fc21c0d1c2f.png?sw=2000&sh=2000&sm=fit&sfrm=png",
     "CategoryId": 1
   },
   {
-    "title": "Serpenti Viper Bracelet",
-    "description": "Serpenti Viper one-coil 18 kt white gold bracelet",
-    "price": 7500,
-    "stock": 8,
-    "photoURL": "https://media.bulgari.com/image/upload/c_pad,h_1124,w_1440/q_auto/f_auto/1581426.png",
+    "title": "Trinity earrings, brilliant-cut diamonds",
+    "description": "Designed by Louis Cartier in 1924, the Trinity ring is a signature design of the Cartier Maison. The three interlaced bands in pink, yellow and white gold symbolize love, fidelity and friendship.",
+    "price": 2720,
+    "stock": 22,
+    "photoURL": "https://www.cartier.com/dw/image/v2/BGTJ_PRD/on/demandware.static/-/Sites-cartier-master/default/dw8ed4dec4/images/large/7f820238e6f15782a103ac6ff875ee13.png?sw=2000&sh=2000&sm=fit&sfrm=png",
+    "CategoryId": 1
+  },
+  {
+    "title": "LOVE Bracelet",
+    "description": "Designed by Louis Cartier in 1924, Love Bracelet is a signature design of the Cartier Maison. ",
+    "price": 1720,
+    "stock": 22,
+    "photoURL": "https://www.cartier.com/dw/image/v2/BGTJ_PRD/on/demandware.static/-/Sites-cartier-master/default/dwdf0366b7/images/large/6fb57477c88959d49ca4127307f25aa0.png?sw=2000&sh=2000&sm=fit&sfrm=png",
     "CategoryId": 2
+  },
+  {
+    "title": "LOVE pendant, half-paved",
+    "description": "A child of 1970s New York, the LOVE collection remains today an iconic symbol of love that transgresses convention.",
+    "price": 1720,
+    "stock": 22,
+    "photoURL": "https://www.cartier.com/dw/image/v2/BGTJ_PRD/on/demandware.static/-/Sites-cartier-master/default/dw8866d590/images/large/6f8b72c5f66a578ea6d8b89133060c0f.png?sw=2000&sh=2000&sm=fit&sfrm=png",
+    "CategoryId": 3
   }
 ]

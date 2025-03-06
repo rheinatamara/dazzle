@@ -11,7 +11,8 @@ class UserController {
 
   static async postRegister(req, res) {
     try {
-      await User.create(req.body);
+      let data = await User.create(req.body);
+      await UserProfile.create({ UserId: data.id });
       res.redirect("/login");
     } catch (error) {
       res.send(error);

@@ -31,7 +31,7 @@ class Controller {
       }
 
       const items = await Item.findAll({
-        limit: 3,
+        limit: 5,
         order: [["createdAt", "DESC"]],
       });
 
