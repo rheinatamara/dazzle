@@ -37,7 +37,9 @@ class UserController {
       res.send(error);
     }
   }
-
+  static async getSearch(req, res) {
+    res.redirect("/items?search=true");
+  }
   static async getProfilePage(req, res) {
     try {
       let { userId, role } = req.session;

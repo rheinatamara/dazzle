@@ -10,7 +10,6 @@ class ItemController {
         isAdmin: false,
         profile: false,
       };
-      userId = 1;
       role = "admin";
       if (userId) {
         info.isLoggedIn = true;
@@ -38,7 +37,6 @@ class ItemController {
         isAdmin: false,
         profile: false,
       };
-      userId = 1;
       role = "admin";
       if (userId) {
         info.isLoggedIn = true;
@@ -75,7 +73,6 @@ class ItemController {
         isAdmin: false,
         profile: false,
       };
-      userId = 1;
       role = "admin";
       if (userId) {
         info.isLoggedIn = true;

@@ -6,6 +6,7 @@ const {
   Order,
   UserProfile,
 } = require("../models");
+const { Op } = require("sequelize");
 class Controller {
   static async landingPage(req, res) {
     try {
@@ -46,12 +47,14 @@ class Controller {
   static async allItems(req, res) {
     try {
       let { userId, role } = req.session;
-
+      let { search, filter } = req.query;
       let info = {
         isLoggedIn: false,
         isAdmin: false,
         profile: false,
+        search: false,
       };
+
       if (userId) {
         info.isLoggedIn = true;
         if (role === "admin") {
@@ -64,9 +67,18 @@ class Controller {
           info.profile = true;
         }
       }
-      const data = await Item.findAll({
-        order: [["createdAt", "DESC"]],
-      });
+      if (search) {
+        info.search = true;
+      }
+      const options = { order: [["createdAt", "DESC"]] };
+      if (filter) {
+        options.where = {
+          title: {
+            [Op.iLike]: `%${filter}%`,
+          },
+        };
+      }
+      const data = await Item.findAll(options);
       res.render("items", { data, info, userId });
     } catch (error) {
       res.send(error);

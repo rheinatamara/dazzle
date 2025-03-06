@@ -3,7 +3,8 @@
     <a href="/" class="text-gray-800 text-xl font-normal">Dazzle & Co</a>
 
     <div class="flex items-center space-x-6 text-gray-800">
-      <button
+      <a
+        href="/search"
         aria-label="Search"
         class="text-gray-800/60 hover:text-gray-800 transition-colors"
       >
@@ -21,7 +22,7 @@
           <circle cx="11" cy="11" r="8"></circle>
           <path d="m21 21-4.3-4.3"></path>
         </svg>
-      </button>
+      </a>
       <% if (!info.isLoggedIn) { %>
       <a
         href="/login"

@@ -11,6 +11,7 @@ user.post("/login", UserController.postLogin);
 user.get("/logout", UserController.logOut);
 user.get("/", Controller.landingPage);
 user.get("/items", Controller.allItems);
+user.get("/search", UserController.getSearch);
 user.get("/category/:id", Controller.categoryItems);
 user.get("/detail/:id", Controller.itemDetail);
 
