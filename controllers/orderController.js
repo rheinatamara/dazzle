@@ -32,7 +32,7 @@ class OrderController {
           quantity: quantity,
         });
       }
-      console.log(req.params.id);
+      res.redirect(`/detail/${id}`);
     } catch (error) {
       res.send(error);
     }
