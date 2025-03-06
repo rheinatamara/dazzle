@@ -14,7 +14,7 @@
       <div class="flex justify-between items-center mb-10">
         <h1 class="header text-3xl font-normal">Your Profile</h1>
       </div>
-      <form method="POST" action="/users/:id/profile">
+      <form method="POST" action="/users/<%= profile.id %>/profile/edit">
         <div class="mb-6">
           <label
             for="email"
@@ -26,7 +26,7 @@
             id="disabled-input-2"
             aria-label="disabled input 2"
             class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
-            value="<%= user.email %>"
+            value="<%= profile.User.email %>"
             disabled
             readonly
           />
@@ -41,6 +41,7 @@
             type="fullName"
             id="fullName"
             name="fullName"
+            value="<%= profile.fullName %>"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Your Full Name"
           />
@@ -58,7 +59,9 @@
             name="address"
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Type your full address here..."
-          ></textarea>
+          >
+<%= profile.address %></textarea
+          >
         </div>
 
         <button

@@ -7,6 +7,8 @@ customer.get("/cart", OrderController.showCart); //seeCart
 customer.get("/checkout", OrderController.checkout); //checkout
 customer.get("/users/:id/profile", UserController.getProfilePage); //get profile info
 customer.post("/users/:id/profile", UserController.postProfilePage); //edit profile
+customer.get("/users/:id/profile/edit", UserController.getEditProfile); //edit profile
+customer.post("/users/:id/profile/edit", UserController.postEditProfile); //edit profile
 customer.get("/favorites", UserController.favoritePage);
 customer.get("/items/:id/favorite", UserController.addToFavorite); //addItemToFavorite
 customer.get("/items/:id/favorite/delete", UserController.deleteFavorite); //addItemToFavorite

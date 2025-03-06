@@ -1,5 +1,5 @@
 const { decode } = require("../helpers/bcrypt");
-const { Category, Item, User, Favorite } = require("../models");
+const { Category, Item, User, Favorite, UserProfile } = require("../models");
 
 class UserController {
   static registerForm(req, res) {
@@ -40,14 +40,94 @@ class UserController {
 
   static async getProfilePage(req, res) {
     try {
-      console.log("profile page");
+      let { userId, role } = req.session;
+      let info = {
+        isLoggedIn: false,
+        isAdmin: false,
+        profile: false,
+      };
+      if (userId) {
+        info.isLoggedIn = true;
+        if (role === "admin") {
+          info.isAdmin = true;
+        }
+        let userProfile = await UserProfile.findOne({
+          where: { UserId: +userId },
+        });
+        if (userProfile) {
+          info.profile = true;
+        }
+      }
+      let user = await User.findOne({
+        where: { id: +userId },
+        attributes: ["email"],
+      });
+      res.render("profile", { user, info, userId });
+    } catch (error) {
+      res.send(error);
+    }
+  }
+  static async getEditProfile(req, res) {
+    try {
+      let { userId, role } = req.session;
+      let info = {
+        isLoggedIn: false,
+        isAdmin: false,
+        profile: false,
+      };
+      if (userId) {
+        info.isLoggedIn = true;
+        if (role === "admin") {
+          info.isAdmin = true;
+        }
+        let userProfile = await UserProfile.findOne({
+          where: { UserId: +userId },
+        });
+        if (userProfile) {
+          info.profile = true;
+        }
+      }
+      let profile = await UserProfile.findOne({
+        where: { UserId: +userId },
+        include: User,
+      });
+
+      console.log(profile);
+      res.render("editProfile", { profile, info, userId });
+    } catch (error) {
+      res.send(error);
+    }
+  }
+  static async postEditProfile(req, res) {
+    try {
+      let { userId } = req.session;
+      userId = 2;
+      let { fullName, address } = req.body;
+      let data = {
+        UserId: +userId,
+        fullName,
+        address,
+      };
+      await UserProfile.update(
+        { fullName, address },
+        { where: { UserId: +userId } }
+      );
+      res.redirect("/");
     } catch (error) {
       res.send(error);
     }
   }
   static async postProfilePage(req, res) {
     try {
-      console.log("post profile page");
+      let { userId } = req.session;
+      let { fullName, address } = req.body;
+      let data = {
+        UserId: +userId,
+        fullName,
+        address,
+      };
+      await UserProfile.create(data);
+      res.redirect("/");
     } catch (error) {
       res.send(error);
     }
@@ -82,12 +162,30 @@ class UserController {
   }
   static async favoritePage(req, res) {
     try {
-      let { userId } = req.session;
+      let { userId, role } = req.session;
+
+      let info = {
+        isLoggedIn: false,
+        isAdmin: false,
+        profile: false,
+      };
+      if (userId) {
+        info.isLoggedIn = true;
+        if (role === "admin") {
+          info.isAdmin = true;
+        }
+        let userProfile = await UserProfile.findOne({
+          where: { UserId: +userId },
+        });
+        if (userProfile) {
+          info.profile = true;
+        }
+      }
       let data = await Favorite.findAll({
         include: Item,
         where: { UserId: +userId },
       });
-      res.render("favorite", { data });
+      res.render("favorite", { data, info, userId });
     } catch (error) {
       res.send(error);
     }

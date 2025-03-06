@@ -1,4 +1,11 @@
-const { Category, Item, User, Order, OrderItem } = require("../models");
+const {
+  Category,
+  Item,
+  User,
+  Order,
+  OrderItem,
+  UserProfile,
+} = require("../models");
 
 class OrderController {
   static async addToCart(req, res) {
@@ -32,7 +39,25 @@ class OrderController {
   }
   static async showCart(req, res) {
     try {
-      let { userId } = req.session;
+      let { userId, role } = req.session;
+
+      let info = {
+        isLoggedIn: false,
+        isAdmin: false,
+        profile: false,
+      };
+      if (userId) {
+        info.isLoggedIn = true;
+        if (role === "admin") {
+          info.isAdmin = true;
+        }
+        let userProfile = await UserProfile.findOne({
+          where: { UserId: userId },
+        });
+        if (userProfile) {
+          info.profile = true;
+        }
+      }
       userId = 2;
       const orders = await Order.findAll({
         include: [
@@ -45,12 +70,13 @@ class OrderController {
           UserId: +userId,
         },
       });
-      // ganti pake userProfile nanti
-      const user = await User.findByPk(+userId);
+      let user = await UserProfile.findOne({
+        where: { UserId: +userId },
+      });
+
       if (!orders || orders.length === 0) {
         res.send("no order");
       }
-
       let formattedOrders = orders.map((order) => {
         const items = order.OrderItems.map((orderItem) => ({
           id: orderItem.Item.id,
@@ -66,10 +92,13 @@ class OrderController {
         }
         return { items, total };
       });
-
       formattedOrders = formattedOrders[0];
 
-      res.render("cart", { formattedOrders, user });
+      if (user) {
+        return res.render("cart", { formattedOrders, user, info, userId });
+      }
+
+      res.render("cart", { formattedOrders });
     } catch (error) {
       res.send(error);
     }
