@@ -13,6 +13,7 @@ class OrderController {
     try {
       const { userId } = req.session;
       const { id } = req.params;
+
       let quantity = 1;
       let order = await Order.findOne({
         where: { UserId: +userId, status: "pending" },
@@ -23,8 +24,10 @@ class OrderController {
       let orderItem = await OrderItem.findOne({
         where: { OrderId: order.id, ItemId: +id },
       });
+
       if (orderItem) {
         await orderItem.update({ quantity: orderItem.quantity + quantity });
+        await Item.decrement({ stock: 1 }, { where: { id: +id } });
       } else {
         await OrderItem.create({
           OrderId: order.id,
@@ -37,6 +40,7 @@ class OrderController {
       res.send(error);
     }
   }
+
   static async showCart(req, res) {
     try {
       let { userId, role } = req.session;
@@ -73,9 +77,9 @@ class OrderController {
       let user = await UserProfile.findOne({
         where: { UserId: +userId },
       });
-
+      console.log(user, userId);
       if (!orders || orders.length === 0) {
-        res.send("no order");
+        res.render("noOrder", { info, userId });
       }
       let formattedOrders = orders.map((order) => {
         const items = order.OrderItems.map((orderItem) => ({
@@ -92,13 +96,10 @@ class OrderController {
         }
         return { items, total };
       });
+
       formattedOrders = formattedOrders[0];
 
-      if (user) {
-        return res.render("cart", { formattedOrders, user, info, userId });
-      }
-
-      res.render("cart", { formattedOrders });
+      res.render("cart", { formattedOrders, user, userId, info });
     } catch (error) {
       res.send(error);
     }
@@ -131,6 +132,7 @@ class OrderController {
         text: `Your confirmation code is: 123433`,
       };
       await transporter.sendMail(mailOptions);
+      console.log("email sent success");
       res.redirect("/cart");
     } catch (error) {
       res.send(error);
