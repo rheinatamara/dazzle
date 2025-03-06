@@ -2,7 +2,6 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class OrderItem extends Model {
-   
     static associate(models) {
       OrderItem.belongsTo(models.Order, { foreignKey: "OrderId" });
       OrderItem.belongsTo(models.Item, { foreignKey: "ItemId" });
@@ -24,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
+      quantity: DataTypes.INTEGER,
     },
     {
       sequelize,

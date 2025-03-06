@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
       Favorite.belongsTo(models.User, { foreignKey: "UserId" });
       Favorite.belongsTo(models.Item, { foreignKey: "ItemId" });
     }
+    static async isFavorite(){
+      
+    }
   }
   Favorite.init(
     {

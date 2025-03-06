@@ -2,7 +2,6 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
-   
     static associate(models) {
       Order.belongsTo(models.User, { foreignKey: "UserId" });
       Order.hasMany(models.OrderItem, { foreignKey: "OrderId" });
@@ -22,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Order",
+      hooks: {
+        beforeCreate: (input, option) => {
+          input.status = "pending";
+        },
+      },
     }
   );
   return Order;

@@ -37,6 +37,21 @@ class UserController {
       res.send(error);
     }
   }
+
+  static async getProfilePage(req, res) {
+    try {
+      console.log("profile page");
+    } catch (error) {
+      res.send(error);
+    }
+  }
+  static async postProfilePage(req, res) {
+    try {
+      console.log("post profile page");
+    } catch (error) {
+      res.send(error);
+    }
+  }
   static async addToFavorite(req, res) {
     try {
       let { userId } = req.session;
