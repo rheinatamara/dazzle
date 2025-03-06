@@ -24,7 +24,10 @@ class ItemController {
         }
       }
 
-      let data = await Item.findAll({ include: Category });
+      let data = await Item.findAll({
+        include: Category,
+        order: [["createdAt", "DESC"]],
+      });
       res.render("dashboard", { data, info, userId, deleted });
     } catch (error) {
       res.send(error);
